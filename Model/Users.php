@@ -21,10 +21,11 @@ class Users {
         $this->userList = array();
         $reponse = $this->db->query("SELECT * FROM Users");
         $i = 0; 
-        while ($donnees = $reponse->fetch()) {            
-            $this->userList[$i](new User($donnees['id'], $donnees['firstname'], $donnees['lastname'], $donnees['password'], $donnees['email'], $donnees['createDate']));
+        while ($donnees = $reponse->fetch()) {             
+            $this->userList[$i] = (new User($donnees['id'], $donnees['firstname'], $donnees['lastname'], $donnees['password'], $donnees['email'], $donnees['createDate']));
             $i++;
-            echo 'ok';
+            echo json_encode($this->userList);
+            
         }
     }
 
